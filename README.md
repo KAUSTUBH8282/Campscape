@@ -1,3 +1,15 @@
+# Campscape Project
+
+## Application URL
+[Live Application on Render](https://campscape-48vw.onrender.com/)
+
+## Deployment Logs
+
+![Render Logs](https://drive.google.com/uc?export=view&id=1z8sGZ6N42rFyzZ7ewvnwzRqc-tQqxxPZ)
+
+This application is hosted on Render, and you can check out the logs above.
+
+
 # CampScape
 
 CampScape is a web application that allows users to explore, create, and review campgrounds. It is built using Node.js, Express.js, MongoDB, and other web development technologies. The app provides an interface for users to sign up, log in, and interact with campgrounds by adding new ones, leaving reviews, and editing or deleting their contributions.
