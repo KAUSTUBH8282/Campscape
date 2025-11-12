@@ -132,6 +132,7 @@ app.use(
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
+         reportOnly: true 
     })
 );
 
