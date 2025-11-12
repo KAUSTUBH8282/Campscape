@@ -83,57 +83,96 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
-app.use(helmet());
+// app.use(helmet());
 
+
+// const scriptSrcUrls = [
+//     "https://stackpath.bootstrapcdn.com/",
+//     // "https://api.tiles.mapbox.com/",
+//     // "https://api.mapbox.com/",
+//     "https://kit.fontawesome.com/",
+//     "https://cdnjs.cloudflare.com/",
+//     "https://cdn.jsdelivr.net",
+//     "https://cdn.maptiler.com/", // add this
+// ];
+// const styleSrcUrls = [
+//     "https://kit-free.fontawesome.com/",
+//     "https://stackpath.bootstrapcdn.com/",
+//     // "https://api.mapbox.com/",
+//     // "https://api.tiles.mapbox.com/",
+//     "https://fonts.googleapis.com/",
+//     "https://use.fontawesome.com/",
+//     "https://cdn.jsdelivr.net",
+//     "https://cdn.maptiler.com/", // add this
+// ];
+// const connectSrcUrls = [
+//     // "https://api.mapbox.com/",
+//     // "https://a.tiles.mapbox.com/",
+//     // "https://b.tiles.mapbox.com/",
+//     // "https://events.mapbox.com/",
+//     "https://api.maptiler.com/", // add this
+// ];
+// const fontSrcUrls = [];
+// app.use(
+//     helmet.contentSecurityPolicy({
+//         directives: {
+//             defaultSrc: [],
+//             connectSrc: ["'self'", ...connectSrcUrls],
+//             scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+//             styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+//             workerSrc: ["'self'", "blob:"],
+//             objectSrc: [],
+//             imgSrc: [
+//                 "'self'",
+//                 "blob:",
+//                 "data:",
+//                 "https://res.cloudinary.com/duolzfhmg/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+//                 "https://images.unsplash.com/",
+//                 "https://api.maptiler.com/",
+//             ],
+//             fontSrc: ["'self'", ...fontSrcUrls],
+//         },
+//      
+//     })
+// );
 
 const scriptSrcUrls = [
-    "https://stackpath.bootstrapcdn.com/",
-    // "https://api.tiles.mapbox.com/",
-    // "https://api.mapbox.com/",
-    "https://kit.fontawesome.com/",
-    "https://cdnjs.cloudflare.com/",
-    "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/", // add this
+  "https://stackpath.bootstrapcdn.com",
+  "https://cdn.jsdelivr.net",
+  "https://cdn.maptiler.com"
 ];
 const styleSrcUrls = [
-    "https://kit-free.fontawesome.com/",
-    "https://stackpath.bootstrapcdn.com/",
-    // "https://api.mapbox.com/",
-    // "https://api.tiles.mapbox.com/",
-    "https://fonts.googleapis.com/",
-    "https://use.fontawesome.com/",
-    "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/", // add this
+  "https://stackpath.bootstrapcdn.com",
+  "https://fonts.googleapis.com",
+  "https://cdn.jsdelivr.net",
+  "https://cdn.maptiler.com"
 ];
 const connectSrcUrls = [
-    // "https://api.mapbox.com/",
-    // "https://a.tiles.mapbox.com/",
-    // "https://b.tiles.mapbox.com/",
-    // "https://events.mapbox.com/",
-    "https://api.maptiler.com/", // add this
+  "https://api.maptiler.com"
 ];
-const fontSrcUrls = [];
+const imgSrcUrls = [
+  "https://res.cloudinary.com/duolzfhmg/",
+  "https://images.unsplash.com/",
+  "https://api.maptiler.com"
+];
+
 app.use(
-    helmet.contentSecurityPolicy({
-        directives: {
-            defaultSrc: [],
-            connectSrc: ["'self'", ...connectSrcUrls],
-            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-            workerSrc: ["'self'", "blob:"],
-            objectSrc: [],
-            imgSrc: [
-                "'self'",
-                "blob:",
-                "data:",
-                "https://res.cloudinary.com/duolzfhmg/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
-                "https://images.unsplash.com/",
-                "https://api.maptiler.com/",
-            ],
-            fontSrc: ["'self'", ...fontSrcUrls],
-        },
-         reportOnly: true 
-    })
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: false,
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", ...scriptSrcUrls],
+        styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+        connectSrc: ["'self'", ...connectSrcUrls],
+        imgSrc: ["'self'", "data:", "blob:", ...imgSrcUrls],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://fonts.googleapis.com"],
+        objectSrc: ["'none'"],
+        workerSrc: ["'self'", "blob:"]
+      },
+      reportOnly: false
+    }
+  })
 );
 
 
